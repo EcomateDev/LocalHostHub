@@ -68,15 +68,12 @@
     </div>
     
     <script>
-        // Generate a random ID and server name
         const randomId = Math.floor(Math.random() * 100000);
         const randomName = `Server #${randomId}`;
 
-        // Update the ID and server name on the page
         document.getElementById('server-id').textContent = randomId;
         document.getElementById('server-name').textContent = randomName;
 
-        // Update server uptime
         const serverUptime = document.getElementById('server-uptime');
         const startTime = new Date();
         setInterval(() => {
