@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        #server-info {
+            background-color: #444;
+            border: 1px solid #666;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00ff00;
+        }
+
+        p {
+            color: #ccc;
+            text-align: left;
+        }
+
+        .status-circle {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #00ff00;
+            animation: pulse 10s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="server-info">
+        <h1>Local Server Information</h1>
+        <p>Server ID: <span id="server-id">12345</span></p>
+        <p>Server Name: <span id="server-name">Local Server</span></p>
+        <p>Status: <span id="server-status">Server is running</span> <span class="status-circle"></span></p>
+        <p>Server Uptime: <span id="server-uptime">00:00:00</span></p>
+        <p>Connected Clients: <span id="connected-clients">1</span></p>
+        <p>Note: Some information may not be accurate.</p>
+    </div>
+    
+    <script>
+        // Generate a random ID and server name
+        const randomId = Math.floor(Math.random() * 100000);
+        const randomName = `Server #${randomId}`;
+
+        // Update the ID and server name on the page
+        document.getElementById('server-id').textContent = randomId;
+        document.getElementById('server-name').textContent = randomName;
+
+        // Update server uptime
+        const serverUptime = document.getElementById('server-uptime');
+        const startTime = new Date();
+        setInterval(() => {
+            const now = new Date();
+            const uptimeInSeconds = Math.floor((now - startTime) / 1000);
+            const hours = Math.floor(uptimeInSeconds / 3600);
+            const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
+            const seconds = uptimeInSeconds % 60;
+            serverUptime.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+    </script>
+</body>
+</html>
